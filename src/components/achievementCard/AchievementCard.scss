@@ -54,13 +54,13 @@
 }
 .achievement-cards-div {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); // reduced from 300px
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* was 300px */
   gap: 1rem;
 }
 
 @media (max-width: 480px) {
   .achievement-cards-div {
-    grid-template-columns: 1fr; // one card per row on very small devices
+    grid-template-columns: 1fr; /* one card per row on small phones */
   }
 }
 .certificate-card-footer {
