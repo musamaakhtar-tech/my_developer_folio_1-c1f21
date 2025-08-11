@@ -24,7 +24,7 @@ const greeting = {
     title: "Hi, I'm M. Usama Akhtar",
     subTitle: "A Software Engineer focused on Software Quality and Testing, with experience in frontend development and cloud essentials.",
   resumeLink:
-    "https://drive.google.com/file/d/1Y9ly-Ykk5FQIKgJBTnBWBrtFPvIi7x4q/view?usp=drive_link", // Set to empty to hide the button
+    "https://drive.google.com/uc?export=download&id=1Y9ly-Ykk5FQIKgJBTnBWBrtFPvIi7x4q", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
@@ -35,7 +35,7 @@ const socialMediaLinks = {
   linkedin: "", 
   gmail: "musamaakhtar63@gmail.com", 
   facebook: "https://www.facebook.com/musamaakhtar.tech/", 
-  medium: "https://medium.com/@UACodeHorizon/", 
+  medium: "https://medium.com/@@musamaakhtar-tech/", 
   twitter: "https://x.com/tech_mua/", 
   instagram: "https://www.instagram.com/mua.tech/", 
   stackoverflow: "https://stackoverflow.com/users/31249735/m-usama-akhtar/", 
@@ -441,9 +441,8 @@ const achievementSection = {
 const resumeSection = {
   title: "Resume",
   subtitle: "Feel free to download my resume",
-
-  // Please Provide with Your Podcast embeded Link
-  display: true // Set false to hide this section, defaults to true
+  display: true, // Set false to hide this section, defaults to true 
+  resumeLink: "https://drive.google.com/uc?export=download&id=1Y9ly-Ykk5FQIKgJBTnBWBrtFPvIi7x4q"
 };
 
 const contactInfo = {
@@ -465,8 +464,8 @@ const contactInfo = {
 // Twitter Section
 
 const twitterDetails = {
-  userName: "https://x.com/tech_mua/", 
-  display: false // Set true to display this section, defaults to false
+  userName: "tech_mua", 
+  display: true // Set true to display this section, defaults to false
 };
 
 const isHireable = true; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
