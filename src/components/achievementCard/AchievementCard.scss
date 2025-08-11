@@ -157,3 +157,11 @@ span.certificate-tag:hover {
     -webkit-line-clamp: 3; /* ✅ shorter text on mobile */
   }
 }
+@media (max-width: 480px) {
+  .card-image {
+    width: 180px;          /* allow smaller image on phones */
+  }
+  .certificate-image-div {
+    height: 180px;         /* match the container height */
+  }
+}
