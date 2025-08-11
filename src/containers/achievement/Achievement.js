@@ -1,15 +1,17 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import "./Achievement.scss";
 import AchievementCard from "../../components/achievementCard/AchievementCard";
-import {achievementSection} from "../../portfolio";
-import {Fade} from "react-reveal";
+import { achievementSection } from "../../portfolio";
 import StyleContext from "../../contexts/StyleContext";
 
 export default function Achievement() {
-  const {isDark} = useContext(StyleContext);
-  if (!achievementSection.display) {
-    return null;
-  }
+  const { isDark } = useContext(StyleContext);
+
+  if (!achievementSection?.display) return null;
+
+  const cards = Array.isArray(achievementSection.achievementsCards)
+    ? achievementSection.achievementsCards.filter(Boolean)
+    : [];
 
   return (
     <div className="main" id="achievements">
@@ -36,19 +38,23 @@ export default function Achievement() {
         </div>
 
         <div className="achievement-cards-div">
-          {achievementSection.achievementsCards.map((card, i) => (
-            <AchievementCard
-              key={i}
-              isDark={isDark}
-              cardInfo={{
-                title: card.title,
-                description: card.subtitle,
-                image: card.image,
-                imageAlt: card.imageAlt,
-                footer: card.footerLink
-              }}
-            />
-          ))}
+          {cards.length === 0 ? (
+            <div className="achievement-empty">No achievements to show.</div>
+          ) : (
+            cards.map((card, i) => (
+              <AchievementCard
+                key={i}
+                isDark={isDark}
+                cardInfo={{
+                  title: card.title,
+                  description: card.subtitle,
+                  image: card.image,
+                  imageAlt: card.imageAlt,
+                  footer: card.footerLink,
+                }}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>
