@@ -93,3 +93,17 @@
   overflow: visible;
 }
 
+/* Prevent accidental clipping on small screens */
+#achievements,
+.achievement-main-div,
+.achievement-cards-div {
+  overflow: visible;
+}
+
+/* Optional: add a little side padding on phones */
+@media (max-width: 480px) {
+  .achievement-main-div {
+    padding: 0 1rem;
+  }
+}
+
