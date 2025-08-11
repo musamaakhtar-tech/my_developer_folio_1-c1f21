@@ -32,3 +32,53 @@
     text-align: center;
   }
 }
+
+.achievement-main-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.achievement-header {
+  text-align: center;
+  margin-bottom: 40px;
+
+  .achievement-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .achievement-subtitle {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    max-width: 700px;
+  }
+}
+
+.achievement-cards-div {
+  display: flex;
+  flex-wrap: wrap; /* ✅ allow wrapping */
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .achievement-cards-div {
+    flex-direction: column; /* stack vertically */
+    align-items: center;
+  }
+}
+
+/* ✅ Small phones */
+@media (max-width: 480px) {
+  .achievement-heading {
+    font-size: 1.8rem !important;
+  }
+
+  .achievement-subtitle {
+    font-size: 0.95rem;
+  }
+}
