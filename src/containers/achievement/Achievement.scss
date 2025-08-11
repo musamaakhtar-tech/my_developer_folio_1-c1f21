@@ -82,3 +82,14 @@
     font-size: 0.95rem;
   }
 }
+
+/* Prevent clipping on small screens */
+#achievements {
+  overflow: visible;
+}
+
+/* Just in case any global .main adds overflow hidden */
+#achievements .achievement-main-div {
+  overflow: visible;
+}
+
