@@ -1,5 +1,5 @@
-import React, {useState, useEffect, lazy, Suspense} from "react";
-import {openSource} from "../../portfolio";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+import { openSource } from "../../portfolio";
 import Contact from "../contact/Contact";
 import Loading from "../loading/Loading";
 
@@ -7,46 +7,43 @@ const renderLoader = () => <Loading />;
 const GithubProfileCard = lazy(() =>
   import("../../components/githubProfileCard/GithubProfileCard")
 );
+
 export default function Profile() {
-  const [prof, setrepo] = useState([]);
-  function setProfileFunction(array) {
-    setrepo(array);
-  }
+  const [prof, setProf] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (openSource.showGithubProfile === "true") {
-      const getProfileData = () => {
-        fetch("/profile.json")
-          .then(result => {
-            if (result.ok) {
-              return result.json();
-            }
-          })
-          .then(response => {
-            setProfileFunction(response.data.user);
-          })
-          .catch(function (error) {
-            console.error(
-              `${error} (because of this error GitHub contact section could not be displayed. Contact section has reverted to default)`
-            );
-            setProfileFunction("Error");
-            openSource.showGithubProfile = "false";
-          });
-      };
-      getProfileData();
-    }
+    if (!openSource.showGithubProfile) return;
+
+    const getProfileData = async () => {
+      try {
+        const res = await fetch("/api/github-profile?username=musamaakhtar-tech", { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        const user = json?.data?.user;
+        if (!user) throw new Error("Malformed profile.json (missing data.user)");
+        setProf(user);
+      } catch (e) {
+        console.error(
+          `${e} (GitHub contact section could not be displayed. Falling back to default Contact.)`
+        );
+        setError(true);
+      }
+    };
+
+    getProfileData();
   }, []);
-  if (
+
+  const shouldShowProfile =
     openSource.display &&
-    openSource.showGithubProfile === "true" &&
-    !(typeof prof === "string" || prof instanceof String)
-  ) {
-    return (
-      <Suspense fallback={renderLoader()}>
-        <GithubProfileCard prof={prof} key={prof.id} />
-      </Suspense>
-    );
-  } else {
-    return <Contact />;
-  }
+    openSource.showGithubProfile &&
+    !error &&
+    prof &&
+    typeof prof !== "string";
+
+  return (
+    <Suspense fallback={renderLoader()}>
+      {shouldShowProfile ? <GithubProfileCard prof={prof} /> : <Contact />}
+    </Suspense>
+  );
 }
